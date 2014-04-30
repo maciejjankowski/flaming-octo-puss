@@ -1,8 +1,7 @@
 Visual debugging for PhantomJS / CasperJS
 =================
 
-It grabs the screen as PhantomJS or CasperJS sees it with `captureBase64('png')` and then it's POSTing this to the 
-receiving end which displays the screenshot in your browser.
+This little hack is using a simple technique: It grabs the screen as PhantomJS or CasperJS sees it with captureBase64('png') and then it is POSTing the image into the receiving server which then sends it via socket.io to the browser which displays it is as inline image.
 
 Here is how it works:
 ![](https://dl.dropboxusercontent.com/u/19020828/casperia.PNG)
