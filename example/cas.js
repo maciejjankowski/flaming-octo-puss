@@ -1,6 +1,6 @@
 require('casper').create()
 
-  .start('http://www.b-good.pl/en/', function() { 
+  .start('http://www.b-good.pl', function() { 
   
       this.evaluate( function(img){
         __utils__.sendAJAX("http://localhost:8001/", 'POST', {'img' : img }, false);    
