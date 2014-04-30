@@ -4,17 +4,18 @@
     <head>
         <meta charset="utf-8" />
         <title></title>
-        <script src="jq.js"></script>
     </head>
-    <body>
 
-<script src="/socket.io/socket.io.js"></script>
-<script src="io.js"></script>
+<body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+  var socket = io.connect("http://localhost:8001")
+    .on('img', function (data) {
+      document.getElementById('img').attributes['src'].value = "data:image/jpeg;base64, " + data
+    });
+  </script>
 
-<img id="img" src="">
-
-<pre style="font-family: 'Lucida Console', monospace; font-size: 8pt;"  id="out"></pre>
-
+  <img id="img" src="">
 </body>
 </html>
 
