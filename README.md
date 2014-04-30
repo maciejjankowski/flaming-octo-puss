@@ -20,3 +20,5 @@ this.evaluate( function(img){
   {'img' : this.captureBase64('png')} 
 );
 ````
+
+p.s. Remember to set the viewport size otherwise you can get the responsive, squeezed page.
