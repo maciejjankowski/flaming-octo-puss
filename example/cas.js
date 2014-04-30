@@ -1,4 +1,9 @@
-require('casper').create()
+require('casper').create({
+  viewPortSize : {
+      width: 1024, 
+      height: 768
+  }
+})
 
   .start('http://gumtree.pl', function() { 
   
