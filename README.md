@@ -23,4 +23,8 @@ this.evaluate( function(img){
 );
 ````
 
+OR you can attach it to `onStepComplete` handler
+
+OR use `setInterval` to get a fresh screenshot every x ms - I'd recommend 150-300ms.
+
 p.s. Remember to set the viewport size otherwise you can get the responsive, squeezed page.
