@@ -7,7 +7,8 @@ Here is how it works:
 ![](https://dl.dropboxusercontent.com/u/19020828/casperia.PNG)
 
 
-To get this working:
+Setup
+----------------
 
 0. Grab the repo (and node.js if you don't have it)
 1. run `npm install`
