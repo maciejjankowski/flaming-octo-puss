@@ -26,6 +26,21 @@ this.evaluate( function(img){
 
 OR you can attach it to `onStepComplete` handler
 
-OR use `setInterval` to get a fresh screenshot every x ms - I'd recommend 150-300ms.
+OR use `setInterval` to get a fresh screenshot every x ms - my preferred method:
+
+````
+setInterval(function(){
+  show(casper);
+}, 300);
+
+
+function show(casper){
+  casper.evaluate( function(img){
+        __utils__.sendAJAX("http://localhost:8001/", 'POST', {'img' : img }, false);
+      },
+      {'img' : casper.captureBase64('png')}
+  ); // evaluate
+} // show
+````
 
 p.s. Remember to set the viewport size otherwise you can get the responsive, squeezed page.
