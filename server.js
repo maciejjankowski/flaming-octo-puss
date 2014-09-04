@@ -7,8 +7,10 @@ app.use(express.json());
 app.use(express.static(__dirname + '/public'));
 app.use(app.router);
 
-var server = app.listen(process.env.port || "8001");
+var server = app.listen(process.env.port || "8002");
 var io = require('socket.io').listen(server).set('log level', 0);
+
+console.log("casperView", server.address().port);
 
 app.post('/', function(req, res){
   res.header('Access-Control-Allow-Origin', '*');

@@ -12,10 +12,11 @@
         </style>
     </head>
 
-<body>
+<body style="font-size:7pt; font-family:Lucida Console; text-align:center;background-color:#a0ffa0">
+casperView<br>
   <script src="/socket.io/socket.io.js"></script>
   <script>
-  var socket = io.connect("http://localhost:8001")
+  var socket = io.connect(location.href)
     .on('img', function (data) {
       document.getElementById('img').attributes['src'].value = "data:image/jpeg;base64, " + data
     });
