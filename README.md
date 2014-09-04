@@ -7,7 +7,8 @@ Here is how it works:
 ![](https://dl.dropboxusercontent.com/u/19020828/casperia.PNG)
 
 
-To get this working:
+Setup
+----------------
 
 0. Grab the repo (and node.js if you don't have it)
 1. run `npm install`
@@ -21,6 +22,25 @@ this.evaluate( function(img){
   }, 
   {'img' : this.captureBase64('png')} 
 );
+````
+
+OR you can attach it to `onStepComplete` handler
+
+OR use `setInterval` to get a fresh screenshot every x ms - my preferred method:
+
+````
+setInterval(function(){
+  show(casper);
+}, 300);
+
+
+function show(casper){
+  casper.evaluate( function(img){
+        __utils__.sendAJAX("http://localhost:8001/", 'POST', {'img' : img }, false);
+      },
+      {'img' : casper.captureBase64('png')}
+  ); // evaluate
+} // show
 ````
 
 p.s. Remember to set the viewport size otherwise you can get the responsive, squeezed page.
