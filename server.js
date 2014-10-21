@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 
-app.use(express.bodyParser() );
+app.use(express.bodyParser({limit: '50mb'}));
 app.use(express.urlencoded() );
 app.use(express.json());
 app.use(express.static(__dirname + '/public'));
