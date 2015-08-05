@@ -1,28 +1,84 @@
 <!DOCTYPE html>
 
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title></title>
-        <style>
-        body {
-          margin: 0px;
-          padding:0px;
-        }
-        </style>
-    </head>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<style>
+		body {
+			margin: 0px;
+			padding:0px;
+			font-size:7pt; 
+			font-family:Lucida Console; 
+			text-align:center;
+		}
 
-<body style="font-size:7pt; font-family:Lucida Console; text-align:center;background-color:#a0ffa0">
-casperView<br>
-  <script src="/socket.io/socket.io.js"></script>
-  <script>
-  var socket = io.connect(location.href)
-    .on('img', function (data) {
-      document.getElementById('img').attributes['src'].value = "data:image/jpeg;base64, " + data
-    });
-  </script>
+		.list-item-timestamp {
+		    font-size: 20px;
+		    font-weight: bold;
+		}
 
-  <img id="img" src="">
+		.list-item img{
+			display: block;
+			width: 100%;
+			height: auto;
+			-webkit-border-radius: 3px;
+			-moz-border-radius: 3px;
+			border-radius: 3px;
+		}
+	</style>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+
+	<script>
+		var socket = io.connect(location.href);
+		socket.on('img', addImage);
+		var $imagesContainer = null;
+
+		function buildImageEntry (data) {
+			var $elem = $('<div class="list-item"></div>'),
+				$img = $('<img/>', {src: "data:image/jpeg;base64, "+ data}),
+				time = new Date(),
+				$timestamp = $('<div class="list-item-timestamp">'+ time.toString() +'</div>');
+
+			$elem.append($timestamp).append($img);
+			// console.log($elem);
+			return $elem;
+		}
+
+		function addImage (data) {
+			if (!$imagesContainer)
+				return;
+
+			$imagesContainer.data('owlCarousel').addItem(buildImageEntry(data));
+		}
+
+		$(document).ready(function () {
+			$imagesContainer = $("#images");
+			$imagesContainer.owlCarousel({
+			    autoPlay : 3000,
+		        navigation:true,
+				paginationSpeed : 1000,
+			    stopOnHover : true,
+			    singleItem : true,
+    			autoHeight : true,
+				afterInit : function(elem){
+					this.owlControls.prependTo(elem)
+				}
+			});
+		});
+	</script>
+
+</head>
+
+<body>
+	<h1>casperView</h1>
+	
+	<div id="images" class="list"></div>
 </body>
 </html>
 
